@@ -94,6 +94,11 @@ class Frame:
         if "events" in self.scripts and event_name in self.scripts["events"]:
             self.scripts["events"].remove(event_name)
 
+    def RegisterUnitEvent(self, event, unit1, unit2=None):
+        print(f"Frame '{self.name}' registered for unit event '{event}' with units: {unit1}, {unit2}")
+        # For simulation, treat it like RegisterEvent
+        self.RegisterEvent(event)
+
 def register(lua_env):
     def create_frame(frame_type="Frame", name=None, parent=None, template=None):
         frame = Frame(frame_type, name, parent)
