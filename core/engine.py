@@ -1,6 +1,7 @@
 from lupa import LuaRuntime
 from api import register_all
 from core.stubs import register_core_api
+from api.frames import Frame  # Make sure this import is valid
 import time
 
 class WASEngine:
@@ -9,6 +10,7 @@ class WASEngine:
         register_all(self.lua)
         register_core_api(self.lua)
         self.running = False
+        self.FrameClass = Frame
 
     def run_lua(self, lua_code):
         return self.lua.execute(lua_code)
@@ -21,3 +23,6 @@ class WASEngine:
         while self.running and (time.time() - start_time) < duration:
             time.sleep(update_interval)
         self.running = False
+
+    def api_create_frame(self, name, frame_type="Frame", parent=None):
+        return self.FrameClass(name, frame_type, parent)
