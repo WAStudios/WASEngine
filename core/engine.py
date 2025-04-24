@@ -1,11 +1,13 @@
 from lupa import LuaRuntime
 from api import register_all
+from core.stubs import register_core_api
 import time
 
 class WASEngine:
     def __init__(self):
         self.lua = LuaRuntime(unpack_returned_tuples=True)
         register_all(self.lua)
+        register_core_api(self.lua)
         self.running = False
 
     def run_lua(self, lua_code):
