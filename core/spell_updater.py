@@ -10,6 +10,8 @@ from core.icon_downloader import get_icons
 
 CSV_URL = "https://wago.tools/db2/Spell/csv"
 LOCAL_CSV = "data/spells.csv"
+ICON_DIR = "data/icons"
+DEFAULT_ICON = os.path.join(ICON_DIR, "INV_Misc_QuestionMark.blp")
 MAX_AGE_SECONDS = 86400  # 1 day
 
 def is_csv_fresh():
@@ -38,7 +40,7 @@ def parse_spell_csv():
             spellName = row.get('NameSubtext_lang') or f"Spell {spellID}"
             if not spellName:
                 continue  # Skip unnamed spells
-            iconPath = "Interface\\Icons\\INV_Misc_QuestionMark"  # Placeholder icon logic
+            iconPath = DEFAULT_ICON  # Placeholder icon logic
             castTime = 0
             minRange = 0
             maxRange = 40
