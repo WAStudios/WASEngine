@@ -1,2 +1,3 @@
-api
-core
+wase_api
+wase_core
+wase_data
