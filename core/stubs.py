@@ -1,6 +1,13 @@
 # WASEngine/core/stubs.py
 
 def register_sandbox(lua_runtime):
+    # Ensure WeakAuras is globally recognized everywhere
+    lua_runtime.execute("""
+    _G.WeakAuras = _G.WeakAuras or {}
+    WeakAuras = _G.WeakAuras  -- Sync local WeakAuras to global
+    WeakAuras.Private = WeakAuras.Private or {}
+    """)
+
     # LibStub Stub
     lua_runtime.execute("""
     LibStub = LibStub or function(libname, silent)
@@ -19,8 +26,6 @@ def register_sandbox(lua_runtime):
 
     # Basic WoW API
     lua_runtime.execute("""
-    WeakAuras = WeakAuras or {}
-    WeakAuras.Private = WeakAuras.Private or {}
     function GetAddOnMetadata(addon, field)
         return "FakeMetaData"
     end
