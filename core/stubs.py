@@ -1,9 +1,10 @@
 # WASEngine/core/stubs.py
 
 def register_core_api(lua_runtime):
-    # C_AddOns Stub
+    # C_AddOns Stub with _G scope
     lua_runtime.execute("""
-    C_AddOns = C_AddOns or {}
+    _G.C_AddOns = _G.C_AddOns or {}
+    C_AddOns = _G.C_AddOns
     C_AddOns.IsAddOnLoaded = function(name)
         return true
     end
