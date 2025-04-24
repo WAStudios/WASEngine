@@ -134,6 +134,12 @@ def register(lua_env):
             self.position = None
             print(f"Frame '{self.name}' cleared all points")
 
+        def SetAllPoints(self, target=None):
+            if target:
+                print(f"{self.name}.SetAllPoints to {target.name}")
+            else:
+                print(f"{self.name}.SetAllPoints to parent")
+
         # --- Mouse Interaction ---
         def EnableMouse(self, enable):
             self.mouse_enabled = enable
