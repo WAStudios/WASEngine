@@ -3,6 +3,8 @@ import zipfile
 import os
 import hashlib
 import shutil
+import threading
+import time
 
 KNOWN_GOOD_HASH = 'a53c748e04baf70f9bbdae4f04186adc'  # Replace with actual hash
 
@@ -21,12 +23,31 @@ def get_icons():
     zip_path = '../data/icons.zip'
     extract_path = '../data/icons/'
 
-    # Check for valid icons folder via MD5
+    os.makedirs('../data', exist_ok=True)
+
     if os.path.exists(extract_path):
         print("Found existing icons folder. Verifying integrity...")
+
+        # Start async dot printing
+        running = True
+        def dot_printer():
+            while running:
+                print("... ", end="", flush=True)
+                time.sleep(1.5)
+
+        thread = threading.Thread(target=dot_printer)
+        thread.start()
+
+        # Time the hashing
+        start_time = time.time()
         current_hash = md5_dir(extract_path)
+        elapsed_time = (time.time() - start_time) * 1000  # ms
+        running = False
+        thread.join()
+        print()  # Move to next line after dots
+
         if current_hash == KNOWN_GOOD_HASH:
-            print("Icons folder is valid. No need to download.")
+            print(f"Icons folder is valid. No need to download. (Checked in {elapsed_time:.0f} ms)")
             return extract_path
         else:
             print("Icons folder hash mismatch. Cleaning up...")
@@ -34,7 +55,6 @@ def get_icons():
             if os.path.exists(zip_path):
                 os.remove(zip_path)
 
-    # Check if icons.zip already exists
     if os.path.exists(zip_path):
         print("Found existing icons.zip. Extracting...")
     else:
@@ -44,15 +64,12 @@ def get_icons():
             print("Download failed.")
             return None
 
-    # Extract icons.zip
     print("Extracting icons.zip...")
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(extract_path)
     print(f"Icons extracted to {extract_path}")
 
-    # Optional: Remove the zip after extraction
     os.remove(zip_path)
     print("Cleaned up icons.zip")
 
     return extract_path
-

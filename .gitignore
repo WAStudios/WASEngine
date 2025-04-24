@@ -1,5 +1,6 @@
 # Ignore these files, they shouldn't go on github.
-data/
+data/icons
+data/spells.csv
 WASEngine.zip
 
 # Ignore default python things

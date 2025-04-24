@@ -1,27 +1,45 @@
 # api/events.py
 
 def register(lua_env):
-    event_registry = {}
+    event_registry = {}  # eventName: [frame1, frame2, ...]
+    all_events_frames = set()
 
-    def register_event(event_name, frame):
-        if event_name not in event_registry:
-            event_registry[event_name] = []
-        event_registry[event_name].append(frame)
-        print(f"Frame '{frame.name}' registered for event '{event_name}'")
+    # --- Core Event API ---
+    def RegisterEvent(eventName, frame):
+        if eventName not in event_registry:
+            event_registry[eventName] = []
+        if frame not in event_registry[eventName]:
+            event_registry[eventName].append(frame)
+            print(f"Frame '{frame.name}' registered for event '{eventName}'")
 
-    def unregister_event(event_name, frame):
-        if event_name in event_registry:
-            if frame in event_registry[event_name]:
-                event_registry[event_name].remove(frame)
-                print(f"Frame '{frame.name}' unregistered from event '{event_name}'")
+    def UnregisterEvent(eventName, frame):
+        if eventName in event_registry and frame in event_registry[eventName]:
+            event_registry[eventName].remove(frame)
+            print(f"Frame '{frame.name}' unregistered from event '{eventName}'")
 
-    def trigger_event(event_name, *args):
-        frames = event_registry.get(event_name, [])
-        print(f"Triggering event '{event_name}' for {len(frames)} frame(s)")
+    def RegisterAllEvents(frame):
+        all_events_frames.add(frame)
+        print(f"Frame '{frame.name}' registered for ALL events")
+
+    def UnregisterAllEvents(frame):
+        all_events_frames.discard(frame)
+        print(f"Frame '{frame.name}' unregistered from ALL events")
+
+    def TriggerEvent(eventName, *args):
+        # Regular registered frames
+        frames = event_registry.get(eventName, [])
         for frame in frames:
             if "OnEvent" in frame.scripts:
-                frame.scripts["OnEvent"](frame, event_name, *args)
+                frame.scripts["OnEvent"](frame, eventName, *args)
+        # Frames registered for ALL events
+        for frame in all_events_frames:
+            if "OnEvent" in frame.scripts:
+                frame.scripts["OnEvent"](frame, eventName, *args)
+        print(f"Triggered event '{eventName}' with args {args}")
 
-    lua_env.globals()['RegisterEvent'] = register_event
-    lua_env.globals()['UnregisterEvent'] = unregister_event
-    lua_env.globals()['TriggerEvent'] = trigger_event
+    # --- Inject into Lua ---
+    lua_env.globals()['RegisterEvent'] = RegisterEvent
+    lua_env.globals()['UnregisterEvent'] = UnregisterEvent
+    lua_env.globals()['RegisterAllEvents'] = RegisterAllEvents
+    lua_env.globals()['UnregisterAllEvents'] = UnregisterAllEvents
+    lua_env.globals()['TriggerEvent'] = TriggerEvent
