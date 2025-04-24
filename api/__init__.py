@@ -19,7 +19,9 @@ from api import (
     secure,
     update_loop,
     actionbar,
-    auras
+    auras,
+    math,
+    bit
 )
 
 # --- Register All APIs into Lua ---
@@ -42,3 +44,5 @@ def register_all(lua_env):
     update_loop.register(lua_env)
     actionbar.register(lua_env)
     auras.register(lua_env)
+    math.register_math(lua_env)
+    bit.register(lua_env)
