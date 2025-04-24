@@ -84,6 +84,16 @@ class Frame:
             self.scripts["OnUpdate"](self, elapsed)
             self.on_update_timer = time.time()
 
+    def RegisterEvent(self, event_name):
+        print(f"Frame '{self.name}' registered for event '{event_name}'")
+        # You can track registered events if needed later
+        self.scripts.setdefault("events", set()).add(event_name)
+
+    def UnregisterEvent(self, event_name):
+        print(f"Frame '{self.name}' unregistered from event '{event_name}'")
+        if "events" in self.scripts and event_name in self.scripts["events"]:
+            self.scripts["events"].remove(event_name)
+
 def register(lua_env):
     def create_frame(frame_type="Frame", name=None, parent=None, template=None):
         frame = Frame(frame_type, name, parent)
