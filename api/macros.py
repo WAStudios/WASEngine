@@ -11,7 +11,7 @@ def register(lua_env):
 
     # --- Blizzard-Style Registration ---
     def set_slash(name, index, value):
-        if not lua_env.globals().get(f"SLASH_{name}{index}"):
+        if f"SLASH_{name}{index}" not in lua_env.globals():
             lua_env.globals()[f"SLASH_{name}{index}"] = value
             print(f"SLASH_{name}{index} = '{value}'")
 

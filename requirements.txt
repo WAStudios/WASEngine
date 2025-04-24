@@ -1,3 +1,4 @@
 blp
 gdown
 pillow
+lupa

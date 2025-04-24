@@ -6,7 +6,6 @@ import time
 class WASEngine:
     def __init__(self):
         self.lua = LuaRuntime(unpack_returned_tuples=True)
-        self.spells = ensure_spells_loaded()  # Load spells dynamically
         register_all(self.lua)
         self.running = False
 
