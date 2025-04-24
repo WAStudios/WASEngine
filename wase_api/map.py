@@ -1,4 +1,4 @@
-# api/map.py
+# wase_api/map.py
 
 import math
 import random

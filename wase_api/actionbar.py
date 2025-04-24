@@ -1,9 +1,9 @@
-# api/actionbar.py
+# wase_api/actionbar.py
 
 import time as py_time
 import os
 
-ICON_DIR = "data/icons"
+ICON_DIR = "wase_data/icons"
 DEFAULT_ICON = os.path.join(ICON_DIR, "INV_Misc_QuestionMark.blp")
 
 def get_texture_path(iconName):

@@ -1,4 +1,4 @@
-# core/spell_updater.py
+# wase_core/spell_updater.py
 
 import requests
 import os
@@ -9,8 +9,8 @@ import csv
 from core.icon_downloader import get_icons
 
 CSV_URL = "https://wago.tools/db2/Spell/csv"
-LOCAL_CSV = "data/spells.csv"
-ICON_DIR = "data/icons"
+LOCAL_CSV = "wase_data/spells.csv"
+ICON_DIR = "wase_data/icons"
 DEFAULT_ICON = os.path.join(ICON_DIR, "INV_Misc_QuestionMark.blp")
 MAX_AGE_SECONDS = 86400  # 1 day
 
@@ -24,7 +24,7 @@ def download_spell_csv():
     print("Downloading latest spells.csv from Wago.tools...")
     response = requests.get(CSV_URL)
     if response.status_code == 200:
-        os.makedirs("data", exist_ok=True)
+        os.makedirs("wase_data", exist_ok=True)
         with open(LOCAL_CSV, 'wb') as f:
             f.write(response.content)
         print("Downloaded and saved spells.csv.")

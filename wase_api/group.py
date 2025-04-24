@@ -1,4 +1,4 @@
-# api/group.py
+# wase_api/group.py
 
 def register(lua_env):
     group_data = {

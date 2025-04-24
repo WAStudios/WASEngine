@@ -1,9 +1,9 @@
-# WASEngine/api/bit.py
+# WASEngine/wase_api/bit.py
 
 # WoW Lua-compatible bitwise operations for the WASEngine Blizzard API simulation.
 
 # The original WoW environment mixes Lua 5.1 and bit/bit32-style APIs.
-# We replicate core functionality here.
+# We replicate wase_core functionality here.
 
 def band(*args):
     """Bitwise AND of all arguments."""

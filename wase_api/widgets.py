@@ -1,9 +1,9 @@
-# api/widgets.py
+# wase_api/widgets.py
 
 import os
 
-ICON_DIR = "data/icons"
-FONT_DIR = "data/fonts"
+ICON_DIR = "wase_data/icons"
+FONT_DIR = "wase_data/fonts"
 DEFAULT_FONT = os.path.join(FONT_DIR, "Arial.ttf")
 DEFAULT_ICON = os.path.join(ICON_DIR, "INV_Misc_QuestionMark.blp")
 

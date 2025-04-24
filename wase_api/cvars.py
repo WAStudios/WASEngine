@@ -1,4 +1,4 @@
-# api/cvars.py
+# wase_api/cvars.py
 
 import json
 import os

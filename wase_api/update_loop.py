@@ -1,4 +1,4 @@
-# api/update_loop.py
+# wase_api/update_loop.py
 
 import time as py_time
 import threading

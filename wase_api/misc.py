@@ -1,4 +1,4 @@
-# api/misc.py
+# wase_api/misc.py
 
 def register(lua_env):
     lua_env.globals()['GetLocale'] = lambda: "enUS"

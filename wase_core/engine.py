@@ -1,7 +1,7 @@
 from lupa import LuaRuntime
-from api import register_all
+from wase_api import register_all
 from core.stubs import register_core_api
-from api.frames import Frame  # Make sure this import is valid
+from wase_api.frames import Frame  # Make sure this import is valid
 import time
 
 class WASEngine:

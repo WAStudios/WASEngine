@@ -1,4 +1,4 @@
-# api/secure.py
+# wase_api/secure.py
 
 def register(lua_env):
     class SecureFrame:

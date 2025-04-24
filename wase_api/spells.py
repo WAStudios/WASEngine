@@ -1,10 +1,10 @@
-# api/spell.py
+# wase_api/spell.py
 
 import os
 import time as py_time
 from core import spell_updater
 
-ICON_DIR = "data/icons"
+ICON_DIR = "wase_data/icons"
 DEFAULT_ICON = os.path.join(ICON_DIR, "INV_Misc_QuestionMark.blp")
 
 def get_texture_path(iconName):

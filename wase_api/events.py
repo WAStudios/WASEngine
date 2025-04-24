@@ -1,4 +1,4 @@
-# api/events.py
+# wase_api/events.py
 
 def register(lua_env):
     event_registry = {}  # eventName: [frame1, frame2, ...]

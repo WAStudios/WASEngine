@@ -1,4 +1,4 @@
-# api/targeting.py
+# wase_api/targeting.py
 
 def register(lua_env):
     current_target = None

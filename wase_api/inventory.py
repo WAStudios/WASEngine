@@ -1,9 +1,9 @@
-# api/inventory.py
+# wase_api/inventory.py
 
 import os
 import time as py_time
 
-ICON_DIR = "data/icons"
+ICON_DIR = "wase_data/icons"
 DEFAULT_ICON = os.path.join(ICON_DIR, "INV_Misc_QuestionMark.blp")
 
 def get_texture_path(iconName):

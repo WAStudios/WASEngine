@@ -1,4 +1,4 @@
-# api/frames.py
+# wase_api/frames.py
 
 import time
 
@@ -21,7 +21,7 @@ class Frame:
         self.point = ("CENTER", None, "CENTER", 0, 0)
         self.text = ""
         self.texture = "Interface\\Icons\\INV_Misc_QuestionMark"
-        self.font = "data/fonts/Arial.ttf"
+        self.font = "wase_data/fonts/Arial.ttf"
         self.on_update_timer = 0
         frames[self.name] = self
         print(f"Created frame '{self.name}' of type '{self.frame_type}'")

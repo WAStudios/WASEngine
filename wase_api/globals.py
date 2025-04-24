@@ -1,4 +1,4 @@
-# api/globals.py
+# wase_api/globals.py
 
 def register(lua_env):
     # Lua utility functions (same as before)

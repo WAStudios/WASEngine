@@ -1,4 +1,4 @@
-# api/macros.py
+# wase_api/macros.py
 
 def register(lua_env):
     slash_commands = {}

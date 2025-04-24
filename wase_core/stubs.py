@@ -1,4 +1,4 @@
-# WASEngine/core/stubs.py
+# WASEngine/wase_core/stubs.py
 
 def register_core_api(lua_runtime):
     # C_AddOns Stub with _G scope

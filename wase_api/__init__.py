@@ -1,7 +1,7 @@
 # __init__.py
 
 # --- API Imports ---
-from api import (
+from wase_api import (
     time,
     misc,
     frames,

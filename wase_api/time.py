@@ -1,4 +1,4 @@
-# api/time.py
+# wase_api/time.py
 
 import time as py_time
 import threading
