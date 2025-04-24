@@ -102,5 +102,5 @@ def register(lua_env):
     lua_env.globals()['RunFrameUpdates'] = run_updates
     lua_env.globals()['TriggerFrameEvent'] = trigger_frame_event
 
-# Expose Frame class to WAStudio
-FrameClassForTest = Frame
+# Explicit module-level reference for direct import
+Frame = Frame  # Ensures Frame is properly exposed at module scope
