@@ -8,8 +8,8 @@ class WASEngine:
     def __init__(self):
         self.lua = LuaRuntime(unpack_returned_tuples=True)
         register_all(self.lua)
-        print("math.min in Lua:", self.lua.eval("return math.min(1, 2)"))  # Should print 1
-
+        result = self.lua.execute("return math.min(1, 2)")
+        print("math.min in Lua:", result)  # Should print 1
         register_core_api(self.lua)
         self.running = False
         self.FrameClass = Frame
