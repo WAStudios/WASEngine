@@ -2,6 +2,8 @@
 
 import time
 
+__all__ = ['Frame', 'register']  # Explicit module exports
+
 frames = {}  # Global registry of all created frames
 
 class Frame:
@@ -101,6 +103,3 @@ def register(lua_env):
     lua_env.globals()['GetAllFrames'] = lambda: list(frames.values())
     lua_env.globals()['RunFrameUpdates'] = run_updates
     lua_env.globals()['TriggerFrameEvent'] = trigger_frame_event
-
-# Explicit module-level reference for direct import
-Frame = Frame  # Ensures Frame is properly exposed at module scope
