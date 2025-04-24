@@ -3,8 +3,10 @@
 def register_sandbox(lua_runtime):
     # Ensure WeakAuras is globally recognized everywhere
     lua_runtime.execute("""
-    _G.WeakAuras = _G.WeakAuras or {}
-    WeakAuras = _G.WeakAuras  -- Sync local WeakAuras to global
+    if not WeakAuras then
+        _G.WeakAuras = _G.WeakAuras or {}
+        WeakAuras = _G.WeakAuras
+    end
     WeakAuras.Private = WeakAuras.Private or {}
     """)
 
