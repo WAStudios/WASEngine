@@ -21,7 +21,8 @@ from . import (
     actionbar,
     auras,
     math,
-    bit
+    bit,
+    enum
 )
 
 # --- Register All APIs into Lua ---
@@ -46,3 +47,4 @@ def register_all(lua_env):
     auras.register(lua_env)
     math.register_math(lua_env)
     bit.register(lua_env)
+    enum.register_enum(lua_runtime)
