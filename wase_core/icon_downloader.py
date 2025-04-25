@@ -10,6 +10,7 @@ extract_path = os.path.join(BASE_PATH, 'icons')
 filenames_file = os.path.join(BASE_PATH, 'filenames.txt')
 
 KNOWN_FILENAMES_HASH = "dd6ef9b97ba3ea2b17d3c32924a0db87"
+KNOWN_ZIP_HASH = "df8a34d4ce833b4b0ab7db4033601053"
 
 def md5_file(filepath):
     hash_md5 = hashlib.md5()
@@ -43,11 +44,23 @@ def get_icons():
         print("Missing icons or filenames.txt, downloading...")
         if not os.path.exists(zip_path):
             download_icons()
+
+        # Verify ZIP MD5
+        current_zip_hash = md5_file(zip_path)
+        print(f"icons.zip MD5: {current_zip_hash}")
+        if current_zip_hash != KNOWN_ZIP_HASH:
+            raise Exception("icons.zip hash mismatch! Aborting extraction.")
+
         print("Extracting icons.zip...")
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             zip_ref.extractall(extract_path)
         generate_filenames_file()
         print("Generated filenames.txt")
+
+        # Delete zip after extraction
+        if os.path.exists(zip_path):
+            os.remove(zip_path)
+            print("Deleted icons.zip after extraction.")
     else:
         print("Verifying filenames.txt integrity...")
         current_hash = md5_file(filenames_file)
@@ -56,7 +69,6 @@ def get_icons():
             print("File structure is valid.")
         else:
             print("File structure invalid. Re-downloading icons.")
-            os.remove(zip_path)
             os.remove(filenames_file)
             for root, dirs, files in os.walk(extract_path, topdown=False):
                 for name in files:
