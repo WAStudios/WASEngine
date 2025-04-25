@@ -2,6 +2,8 @@
 wase_data/icons
 wase_data/spells.csv
 WASEngine.zip
+dist/
+wasengine.egg-info/
 
 # Ignore default python things
 __pycache__
