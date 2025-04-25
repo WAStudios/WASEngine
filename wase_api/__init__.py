@@ -22,7 +22,8 @@ from . import (
     auras,
     math,
     bit,
-    enum
+    enum,
+    hooksecurefunc
 )
 
 # --- Register All APIs into Lua ---
@@ -48,3 +49,4 @@ def register_all(lua_env):
     math.register_math(lua_env)
     bit.register(lua_env)
     enum.register(lua_env)
+    hooksecurefunc.register(lua_env)
