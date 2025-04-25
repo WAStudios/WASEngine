@@ -2,7 +2,7 @@
 
 import os
 import time as py_time
-from core import spell_updater
+from wase_core import spell_updater
 
 ICON_DIR = "wase_data/icons"
 DEFAULT_ICON = os.path.join(ICON_DIR, "INV_Misc_QuestionMark.blp")
