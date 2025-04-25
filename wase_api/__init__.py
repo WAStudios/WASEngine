@@ -47,4 +47,4 @@ def register_all(lua_env):
     auras.register(lua_env)
     math.register_math(lua_env)
     bit.register(lua_env)
-    enum.register_enum(lua_runtime)
+    enum.register(lua_env)
