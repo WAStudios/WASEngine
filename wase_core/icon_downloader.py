@@ -3,12 +3,12 @@ import zipfile
 import hashlib
 import gdown
 
-BASE_PATH = os.path.join(os.path.dirname(__file__), '..', 'was_data')
+# Force BASE_PATH to WAStudio's root directory
+BASE_PATH = os.path.join(os.getcwd(), 'wase_data')
 zip_path = os.path.join(BASE_PATH, 'icons.zip')
 extract_path = os.path.join(BASE_PATH, 'icons')
 filenames_file = os.path.join(BASE_PATH, 'filenames.txt')
 
-# Known-good hash of filenames.txt
 KNOWN_FILENAMES_HASH = "dd6ef9b97ba3ea2b17d3c32924a0db87"
 
 def md5_file(filepath):
@@ -21,7 +21,7 @@ def md5_file(filepath):
 def generate_filenames_file():
     with open(filenames_file, 'w', encoding='utf-8') as f:
         for root, dirs, files in os.walk(extract_path):
-            for name in sorted(files):  # sort for consistent order
+            for name in sorted(files):
                 rel_path = os.path.relpath(os.path.join(root, name), extract_path)
                 f.write(rel_path + '\n')
 
@@ -56,6 +56,6 @@ def get_icons():
                 for name in dirs:
                     os.rmdir(os.path.join(root, name))
             os.rmdir(extract_path)
-            return get_icons()  # Re-run to download fresh
+            return get_icons()
 
     return extract_path
