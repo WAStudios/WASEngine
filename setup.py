@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='wasengine',  # PyPI name (must be unique)
-    version='1.0.4',
+    version='1.0.6',
     description='Blizzard API Simulation Engine for Lua Addon Testing',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',

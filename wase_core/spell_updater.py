@@ -3,7 +3,7 @@ import os
 import time
 import csv
 
-from icon_downloader import get_icons
+from wase_core.icon_downloader import get_icons
 
 BASE_PATH = os.path.join(os.getcwd(), 'wase_data')
 CSV_URL = "https://wago.tools/db2/Spell/csv"

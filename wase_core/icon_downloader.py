@@ -1,7 +1,7 @@
 import os
 import zipfile
 import hashlib
-import gdown
+import requests
 
 # Force BASE_PATH to WAStudio's root directory
 BASE_PATH = os.path.join(os.getcwd(), 'wase_data')
@@ -27,8 +27,16 @@ def generate_filenames_file():
 
 def download_icons():
     os.makedirs(BASE_PATH, exist_ok=True)
-    print("Downloading icons.zip...")
-    gdown.download(id='1vYoFzZZYjE6eV4UwBFydGYNztdXhG3Dc', output=zip_path, quiet=False)
+    print("Downloading icons.zip from GitHub...")
+    url = 'https://github.com/WAStudios/WASEngine/releases/download/icons/icons.zip'
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        with open(zip_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        print("Download complete.")
+    else:
+        raise Exception(f"Failed to download icons.zip, status code: {response.status_code}")
 
 def get_icons():
     if not os.path.exists(extract_path) or not os.path.exists(filenames_file):
