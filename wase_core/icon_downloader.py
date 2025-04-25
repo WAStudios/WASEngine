@@ -20,10 +20,10 @@ def md5_dir(directory):
 
 def get_icons():
     url = 'https://drive.google.com/uc?id=1hzbHyF8qGSA53fYnl8H7UMNUrmFC49KU'
-    zip_path = '../wase_data/icons.zip'
-    extract_path = '../wase_data/icons/'
+    zip_path = 'wase_data/icons.zip'
+    extract_path = 'wase_data/icons/'
 
-    os.makedirs('../wase_data', exist_ok=True)
+    os.makedirs('wase_data', exist_ok=True)
 
     if os.path.exists(extract_path):
         print("Found existing icons folder. Verifying integrity...")

@@ -6,7 +6,7 @@ import time
 import csv
 
 # Import the icon downloader function
-from core.icon_downloader import get_icons
+from wase_core.icon_downloader import get_icons
 
 CSV_URL = "https://wago.tools/db2/Spell/csv"
 LOCAL_CSV = "wase_data/spells.csv"
