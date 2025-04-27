@@ -89,10 +89,16 @@ class Frame:
         # You can track registered events if needed later
         self.scripts.setdefault("events", set()).add(event_name)
 
-    def UnregisterEvent(self, event_name):
-        print(f"Frame '{self.name}' unregistered from event '{event_name}'")
-        if "events" in self.scripts and event_name in self.scripts["events"]:
-            self.scripts["events"].remove(event_name)
+    def UnregisterAllEvents(self):
+        print(f"Frame '{self.name}' unregistered from all events")
+        self.events.clear()
+
+    def UnregisterAllEvents(self):
+        if "events" in self.scripts:
+            print(f"Frame '{self.name}' unregistered from all events: {self.scripts['events']}")
+            self.scripts["events"].clear()
+        else:
+            print(f"Frame '{self.name}' has no events to unregister.")
 
     def RegisterUnitEvent(self, event, unit1, unit2=None):
         print(f"Frame '{self.name}' registered for unit event '{event}' with units: {unit1}, {unit2}")

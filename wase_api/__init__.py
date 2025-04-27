@@ -2,6 +2,7 @@
 
 # --- API Imports ---
 from . import (
+    hooksecurefunc,
     time,
     misc,
     frames,
@@ -22,12 +23,13 @@ from . import (
     auras,
     math,
     bit,
-    enum,
-    hooksecurefunc
+    enum
 )
 
 # --- Register All APIs into Lua ---
 def register_all(lua_env):
+    hooksecurefunc.register(lua_env)
+    enum.register(lua_env)
     time.register(lua_env)
     misc.register(lua_env)
     frames.register(lua_env)
@@ -48,5 +50,3 @@ def register_all(lua_env):
     auras.register(lua_env)
     math.register_math(lua_env)
     bit.register(lua_env)
-    enum.register(lua_env)
-    hooksecurefunc.register(lua_env)
